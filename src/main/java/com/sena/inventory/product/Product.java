@@ -1,4 +1,4 @@
-package product;
+package com.sena.inventory.product;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
