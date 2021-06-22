@@ -5,6 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+
 
 //Modelo de datos para la base de datos 
 @Entity
@@ -13,9 +18,13 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotBlank
 	private String name;
+	@DecimalMin(value = "1.0")
 	private double price;
+	@DecimalMin(value = "1.0")
 	private double cost;
+	@NotNull (message = "Debe seleccionar una marca")
 	private Integer brand;
 	
 	public Product () {

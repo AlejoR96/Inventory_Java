@@ -50,8 +50,17 @@ public class productServices {
 		// TODO Auto-generated method stub
 		return productRepository.save(product);
 	}
+	
+	public Product updateProduct (Product product) {
+		
+		return productRepository.save(product);
+	}
 
-	//VALIDACION PARA EL POSTMAPPING
+
+
+	
+
+
 	
 	
 
