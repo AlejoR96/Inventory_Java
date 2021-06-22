@@ -24,6 +24,7 @@ public class productServices {
 		return productRepository.findAll();
 	}
 	
+	///VALIDACION PARA EL DELETE 
 	public boolean validateDelete(int id){
 		boolean idProduct = productRepository.existsById(id);
 		
@@ -35,6 +36,7 @@ public class productServices {
 		return idProduct;	
 	}
 	
+	///METODO DEL DELETE PARA OBTENER O MOSTRAR QUE EL PRODUCTO NO EXISTE 
 	public Optional<Product> ObtenerPorId(int id){
 		Optional<Product> optionalProduct = productRepository.findById(id);
 		if (!optionalProduct.isPresent()) {
@@ -43,7 +45,13 @@ public class productServices {
 		return optionalProduct;
 	}
 
-	// falta crear el services
+	//METODO PARA MOSTRAR Y GUARDAR LOS DATOS DEL PRODUCT
+	public Product createProduct(Product product) {
+		// TODO Auto-generated method stub
+		return productRepository.save(product);
+	}
+
+	//VALIDACION PARA EL POSTMAPPING
 	
 	
 

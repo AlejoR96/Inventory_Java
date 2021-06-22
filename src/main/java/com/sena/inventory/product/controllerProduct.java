@@ -31,11 +31,11 @@ public class controllerProduct {
 		return this.productServices.getProducts();
 	}
 	
-	// Para enviar datos y guardarlos en la base de datos 
+	// Para crear datos y guardarlos en la base de datos 
     @PostMapping
-    public String saveProduct(@RequestBody Product product){
-    	return product.toString();
+    public Product add(@RequestBody Product product) {
     	
+    	return this.productServices.createProduct(product);
     }
 	
 	
