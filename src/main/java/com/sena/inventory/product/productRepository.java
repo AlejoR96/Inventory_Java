@@ -1,10 +1,18 @@
 package com.sena.inventory.product;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 //clase de interface 
 @Repository
 public interface productRepository extends JpaRepository<Product, Integer> {
-	//No va nigun codigo y todo lo hereda desde el repositorio//
+
+	List<Product> findBystateTrue();
+
+	List<Product> findByPriceGreaterThan(double price);
+
+	List<Product> findByBrand(Integer brand);
+	
 }

@@ -21,7 +21,7 @@ public class productServices {
 	// Aqui va la logica de negocio del proyecto//
 
 	public List<Product> getProducts(){
-		return productRepository.findAll();
+		return productRepository.findBystateTrue();
 	}
 	
 	///VALIDACION PARA EL DELETE 
@@ -55,7 +55,21 @@ public class productServices {
 		
 		return productRepository.save(product);
 	}
+	
 
+	public List<Product> findGreaterthan(double price) {
+		
+		return productRepository.findByPriceGreaterThan(price);
+	}
+
+	public List<Product> findByBrand(Integer brand) {
+		// TODO Auto-generated method stub
+       return productRepository.findByBrand(brand);
+	}
+
+
+
+	
 
 
 	

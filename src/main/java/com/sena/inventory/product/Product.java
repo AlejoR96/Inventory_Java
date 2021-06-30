@@ -1,13 +1,18 @@
 package com.sena.inventory.product;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.sena.inventory.brand.Brand;
 
 
 
@@ -24,26 +29,33 @@ public class Product {
 	private double price;
 	@DecimalMin(value = "1.0")
 	private double cost;
-	@NotNull (message = "Debe seleccionar una marca")
-	private Integer brand;
+//	@NotNull (message = "Debe seleccionar una marca")
+	@ManyToOne //De uno a muchos 
+	@JoinColumn(name = "brand")
+	private Brand brand;
+	@Column(columnDefinition = "boolean default true")
+	private boolean state;
+	
 	
 	public Product () {
 		
 	}
 	
-	public Product (Integer id,String name, double price,double cost, Integer brand) {
+	public Product (Integer id,String name, double price,double cost, Brand brand, boolean state) {
 		this.id= id;		
 		this.name = name;		
 		this.price= price;		
 		this.cost= cost;		
 		this.brand= brand;		
+		this.state = state;
 	}
 	
-	public Product (String name, double price,double cost, Integer brand) {		
+	public Product (String name, double price,double cost, Brand brand,boolean state) {		
 		this.name = name;		
 		this.price= price;		
 		this.cost= cost;		
-		this.brand= brand;		
+		this.brand= brand;
+		this.state = state;	
 	}
 	
 	public Integer getId() {
@@ -80,13 +92,22 @@ public class Product {
 		this.cost = cost;
 	}
 	
-	public Integer getBrand() {
+	public Brand getBrand() {
 		return brand;
 	}
 	
-	public void setBrand(Integer brand) {
+	public void setBrand(Brand brand) {
 		this.brand = brand;
 	}
+	
+	public boolean getState() {
+		return state;
+	}
+	
+	public void setState(boolean state) {
+		this.state = state;
+	}
+	
 	
 	@Override
 	public String toString() {
@@ -95,6 +116,7 @@ public class Product {
 			   ", price=" + price +
 			   ", cost="  + cost  +
 			   ", brand=" + brand +
+			   ", state=" + state +
 			   '}';
 	}
 	

@@ -48,6 +48,17 @@ public class controllerProduct {
     	return this.productServices.createProduct(product);
     }
     
+	
+    @PutMapping
+    public Product UpdateProduct(@Valid @RequestBody Product product){
+    	 
+    	if(product.getId() == null){
+             throw new IllegalStateException("falta el id!");
+         }
+         return productServices.updateProduct(product);
+    	
+    }
+    
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class )
     public Map<String,String> ManejoExcepcionValidacion(MethodArgumentNotValidException exception){
@@ -60,14 +71,6 @@ public class controllerProduct {
     });
     
     return errores;
-    }
-	
-    @PutMapping
-    public Product UpdateProduct(@Valid @RequestBody Product product){
-    	
-    	return this.productServices.updateProduct(product);
-    	
-    	
     }
     
 	
@@ -83,5 +86,21 @@ public class controllerProduct {
 		return miProducto;
 		
 	}
+	
+	
+	@GetMapping(path = "/price/{precio}")
+	public List<Product> getGreaterThan(@PathVariable double price){
+		return productServices.findGreaterthan(price);
+		
+	}
+	
+	@GetMapping(path = "/brand/{brand}")
+	public List<Product> getBybrand(@PathVariable Integer brand){
+		return productServices.findByBrand(brand);
+		
+	}
+	
+	
+	
 	
 }
